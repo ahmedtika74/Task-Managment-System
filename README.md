@@ -59,11 +59,11 @@ Task‑Managment‑System/
    ```
 
 ## 🙌 Key Features
-✔ Full CRUD: Create, Read, Update, Delete tasks
-✔ Local Storage persistence
-✔ Dynamic filtering by task status
-✔ Responsive layout using Material UI
-✔ Clean component structure
+- Full CRUD: Create, Read, Update, Delete tasks
+- Local Storage persistence
+- Dynamic filtering by task status
+- Responsive layout using Material UI
+- Clean component structure
 
 ## 🚀 What I Learned
 - Designing component‑based UIs in React
