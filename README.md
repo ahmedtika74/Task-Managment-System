@@ -1,16 +1,77 @@
-# React + Vite
+# Task Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A feature‑rich task manager app built with **React.js** and **Material UI** that supports full CRUD functionality and local storage persistence.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
+🔗 [*Preview Link*](https://stirring-biscotti-9c8e32.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Project Overview
+This project is a responsive task management app that allows users to:
 
-## React Compiler
+- Create new tasks
+- Edit existing tasks
+- Delete tasks
+- Persist tasks using Local Storage
+- Filter tasks by status (All, Done, Pending)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+It demonstrates fundamental React skills including component design, state management, and UI interaction using Material UI.
 
-## Expanding the ESLint configuration
+## 🛠 Technologies Used
+- **React.js** – Component‑based frontend  
+- **Material UI (MUI)** – UI components and layout  
+- **React Hooks (useState, useEffect)** – State and lifecycle  
+- **Local Storage** – Client‑side persistence  
+- **JavaScript (ES6+)** – Logic and interaction  
+- **Responsive Design** – Works across devices
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Project Structurez
+```
+Task‑Managment‑System/
+├── node_modules/
+├── public/
+├── src/
+│ ├── components/
+│ │ ├── TaskForm.jsx
+│ │ ├── TaskList.jsx
+│ │ └── ...
+│ ├── App.js
+│ ├── index.js
+│ ├── theme.js
+│ └── ...
+├── .gitignore
+├── package.json
+├── tailwind.config.js
+└── README.md
+```
+
+## 📌 How to Run Locally
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/ahmedtika74/Task‑Managment‑System.git
+   ```
+2. Install dependencies
+   ```
+   npm install
+   ```
+3. Start the dev server
+   ```
+   npm start
+   ```
+
+## 🙌 Key Features
+✔ Full CRUD: Create, Read, Update, Delete tasks
+✔ Local Storage persistence
+✔ Dynamic filtering by task status
+✔ Responsive layout using Material UI
+✔ Clean component structure
+
+## 🚀 What I Learned
+- Designing component‑based UIs in React
+- Managing state with useState and useEffect
+- Integrating Material UI for modern design
+- Using Local Storage for persistence
+- Handling task filtering and UI interaction
+
+## 📞 Connect with Me
+GitHub: https://github.com/ahmedtika74
+LinkedIn: https://linkedin.com/in/ahmedtika74
