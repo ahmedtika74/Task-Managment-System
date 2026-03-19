@@ -3,15 +3,8 @@ import ToDoList from "./components/ToDoList";
 
 function App() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        textAlign: "center",
-      }}
-    >
+    <div className="flex justify-center flex-col items-center h-screen text-center">
+      <div></div>
       <ToDoList />
     </div>
   );
