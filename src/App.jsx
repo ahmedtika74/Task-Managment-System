@@ -3,8 +3,7 @@ import ToDoList from "./components/ToDoList";
 
 function App() {
   return (
-    <div className="flex justify-center flex-col items-center h-screen text-center">
-      <div></div>
+    <div className="flex h-screen flex-col items-center justify-center text-center">
       <ToDoList />
     </div>
   );
