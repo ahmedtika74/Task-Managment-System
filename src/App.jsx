@@ -1,11 +1,21 @@
 import "./App.css";
-import ToDoList from "./components/ToDoList";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainLayout from "./components/layout/MainLayout";
+import Dashboard from "./pages/Dashboard";
+import TasksPage from "./pages/TasksPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center text-center">
-      <ToDoList />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="/tasks" element={<TasksPage />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
