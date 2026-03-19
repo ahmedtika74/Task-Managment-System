@@ -27,20 +27,17 @@ It demonstrates fundamental React skills including component design, state manag
 ## 📁 Project Structurez
 ```
 Task‑Managment‑System/
-├── node_modules/
 ├── public/
 ├── src/
 │ ├── components/
-│ │ ├── TaskForm.jsx
-│ │ ├── TaskList.jsx
+│ │ ├── Task.jsx
+│ │ ├── ToDoList.jsx
 │ │ └── ...
-│ ├── App.js
-│ ├── index.js
-│ ├── theme.js
+│ ├── App.jsx
+│ ├── main.jsx
 │ └── ...
 ├── .gitignore
 ├── package.json
-├── tailwind.config.js
 └── README.md
 ```
 
