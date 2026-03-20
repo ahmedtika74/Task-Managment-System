@@ -1,8 +1,12 @@
+import { useDispatch } from "react-redux";
+import { toggleTask } from "../../app/features/tasks/tasksSlice";
+import { Check, Trash } from "lucide-react";
 import Badge from "./Badge";
 import Button from "./Button";
-import { Check, Trash } from "lucide-react";
 
-export default function TaskCard({ task }) {
+export default function TaskCard({ task, onDelete }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex items-center justify-between rounded-xl p-4 shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-gray-800">
       <div className="text-left">
@@ -28,10 +32,21 @@ export default function TaskCard({ task }) {
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <Button size="sm">
+        <Button
+          size="sm"
+          onClick={() => {
+            dispatch(toggleTask(task));
+          }}
+        >
           <Check />
         </Button>
-        <Button size="sm" variant="danger">
+        <Button
+          size="sm"
+          variant="danger"
+          onClick={() => {
+            onDelete(task);
+          }}
+        >
           <Trash />
         </Button>
       </div>

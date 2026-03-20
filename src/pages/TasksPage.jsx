@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTask } from "../app/features/tasks/tasksSlice";
 import Button from "../components/ui/Button";
 import TaskCard from "../components/ui/TaskCard";
 import Modal from "../components/ui/Modal";
 import AddTaskForm from "../components/ui/AddTaskForm";
+import ConfirmDialog from "../components/common/ConfirmDialog";
 
 export default function TasksPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState(null);
+
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks) || [];
   return (
     <div className="w-full">
@@ -26,7 +31,13 @@ export default function TasksPage() {
             No tasks yet. Start by adding one!
           </p>
         ) : (
-          tasks.map((task) => <TaskCard key={task.id} task={task} />)
+          tasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              onDelete={(task) => setTaskToDelete(task)}
+            />
+          ))
         )}
       </div>
       <Modal
@@ -42,6 +53,18 @@ export default function TasksPage() {
           }}
         />
       </Modal>
+      <ConfirmDialog
+        title="Delete Task"
+        message={`Are you sure you want to delete "${taskToDelete?.title}"?`}
+        onClose={() => {
+          setTaskToDelete(null);
+        }}
+        onConfirm={() => {
+          dispatch(deleteTask(taskToDelete));
+          setTaskToDelete(null);
+        }}
+        isOpen={!!taskToDelete}
+      />
     </div>
   );
 }
