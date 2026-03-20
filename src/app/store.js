@@ -13,7 +13,7 @@ const localStorageTasks = (store) => (next) => (action) => {
 };
 
 export const store = configureStore({
-  reducer: tasksReducer,
+  reducer: { tasks: tasksReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageTasks),
 });
