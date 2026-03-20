@@ -37,12 +37,10 @@ export const tasksSlice = createSlice({
       state.tasks.unshift(newTask);
     },
     deleteTask: (state, action) => {
-      state.tasks = state.tasks.filter((task) => {
-        task.id !== action.payload;
-      });
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
     },
     toggleTask: (state, action) => {
-      const task = state.tasks.find((task) => task.id === action.payload);
+      const task = state.tasks.find((task) => task.id === action.payload.id);
 
       if (task) {
         task.isDone = !task.isDone;
