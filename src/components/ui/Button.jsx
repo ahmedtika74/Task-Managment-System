@@ -14,12 +14,10 @@ export default function Button({
   };
 
   const variants = {
-    primary:
-      "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600",
-    danger:
-      "bg-red-600 text-white hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600",
-    ghost:
-      "bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800",
+    primary: "bg-blue-600 text-white hover:bg-blue-700",
+    danger: "bg-red-600 text-white hover:bg-red-700",
+    ghost: "bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-300",
+    check: "bg-green-600 text-white hover:bg-green-700",
   };
 
   return (
