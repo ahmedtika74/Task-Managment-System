@@ -4,10 +4,10 @@ import { Check, Trash } from "lucide-react";
 
 export default function TaskCard({ task }) {
   return (
-    <div className="flex items-center justify-between rounded-xl p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-gray-800">
+    <div className="flex items-center justify-between rounded-xl p-4 shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-gray-800">
       <div className="text-left">
         <h2
-          className={`text-lg font-bold ${task.isDone ? "text-gray-400 line-through" : "text-white"}`}
+          className={`text-lg font-bold ${task.isDone ? "text-gray-400 line-through" : "text-black dark:text-white"}`}
         >
           {task.title}
         </h2>
