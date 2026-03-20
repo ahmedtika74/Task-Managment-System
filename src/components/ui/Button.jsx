@@ -5,6 +5,7 @@ export default function Button({
   style = "",
   variant = "primary",
   size = "md",
+  type = "button",
 }) {
   const sizes = {
     sm: "px-3 py-1.5 text-sm",
@@ -23,6 +24,7 @@ export default function Button({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
       className={`flex cursor-pointer items-center justify-center rounded-lg font-medium transition-colors focus:outline-0 ${style} ${variants[variant]} ${sizes[size]}`}
