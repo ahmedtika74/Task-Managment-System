@@ -10,6 +10,7 @@ import ConfirmDialog from "../components/common/ConfirmDialog";
 export default function TasksPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  const [taskToEdit, setTaskToEdit] = useState(null);
 
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks) || [];
@@ -36,20 +37,27 @@ export default function TasksPage() {
               key={task.id}
               task={task}
               onDelete={(task) => setTaskToDelete(task)}
+              onEdit={(task) => {
+                setTaskToEdit(task);
+                setIsModalOpen(true);
+              }}
             />
           ))
         )}
       </div>
       <Modal
         isOpen={isModalOpen}
-        title={"Add New Task"}
+        title={taskToEdit ? "Edite Task" : "Add New Task"}
         onClose={() => {
           setIsModalOpen(false);
+          setTaskToEdit(false);
         }}
       >
         <AddTaskForm
+          taskToEdit={taskToEdit}
           onClose={() => {
             setIsModalOpen(false);
+            setTaskToEdit(null);
           }}
         />
       </Modal>

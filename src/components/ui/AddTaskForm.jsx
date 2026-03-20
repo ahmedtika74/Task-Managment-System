@@ -1,29 +1,37 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTask } from "../../app/features/tasks/tasksSlice";
+import { addTask, updateTask } from "../../app/features/tasks/tasksSlice";
 import Button from "./Button";
 
-export default function AddTaskForm({ onClose }) {
+export default function AddTaskForm({ onClose, taskToEdit }) {
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    title: "",
-    description: "",
-    priority: "medium",
-    category: "work",
+    id: taskToEdit?.id,
+    title: taskToEdit?.title || "",
+    description: taskToEdit?.description || "",
+    priority: taskToEdit?.priority || "medium",
+    category: taskToEdit?.category || "work",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (data.title == "") {
+    if (data.title.trim() === "") {
       alert("not valid");
-      return null;
+      return;
     }
-    dispatch(addTask(data));
+
+    if (taskToEdit) {
+      dispatch(updateTask(data));
+    } else {
+      dispatch(addTask(data));
+    }
+
     onClose();
   };
   return (
-    <form className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <input
+        placeholder="Task Title"
         value={data.title}
         onChange={(e) => {
           setData({ ...data, title: e.target.value });
@@ -33,6 +41,7 @@ export default function AddTaskForm({ onClose }) {
         className="rounded-lg border p-2 dark:border-gray-600 dark:bg-gray-700"
       />
       <textarea
+        placeholder="Task Description"
         value={data.description}
         onChange={(e) => {
           setData({ ...data, description: e.target.value });
@@ -40,7 +49,8 @@ export default function AddTaskForm({ onClose }) {
         name="description"
         className="rounded-lg border p-2 dark:border-gray-600 dark:bg-gray-700"
       />
-      <div className="flex gap-4">
+      <div className="flex items-center gap-4">
+        <label>Priority:</label>
         <select
           value={data.priority}
           onChange={(e) => {
@@ -53,6 +63,7 @@ export default function AddTaskForm({ onClose }) {
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
+        <label>Category</label>
         <select
           value={data.category}
           onChange={(e) => {
@@ -66,9 +77,7 @@ export default function AddTaskForm({ onClose }) {
           <option value="personal">Personal</option>
         </select>
       </div>
-      <Button type="submit" onClick={handleSubmit}>
-        Save Task
-      </Button>
+      <Button type="submit">{taskToEdit ? "Update Task" : "Save Task"}</Button>
     </form>
   );
 }
