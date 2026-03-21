@@ -6,7 +6,7 @@ export default function SearchBar({ value, onChange }) {
       <Search size={20} className="text-gray-400" />
       <input
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         type="text"
         placeholder="Search Tasks..."
         className="ml-3 w-full py-2 pr-4 focus:outline-0"
