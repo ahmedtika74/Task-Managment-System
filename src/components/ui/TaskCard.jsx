@@ -15,7 +15,7 @@ export default function TaskCard({ task, onDelete, onEdit }) {
         >
           {task.title}
         </h2>
-        <p className="text-gray-600">{task.description}</p>
+        <p className="text-gray-600 dark:text-gray-500">{task.description}</p>
         <div className="mt-3 flex items-center gap-2">
           <Badge variant="info">{task.category}</Badge>
           <Badge
