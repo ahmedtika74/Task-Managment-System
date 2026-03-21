@@ -31,7 +31,7 @@ export default function TaskCard({ task, onDelete, onEdit }) {
           </Badge>
         </div>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col items-center gap-2 md:flex-row">
         <Button
           size="sm"
           variant="check"
