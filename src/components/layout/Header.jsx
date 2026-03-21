@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+import Button from "../ui/Button";
 import useTheme from "../../hooks/useTheme";
 
 export default function Header() {
