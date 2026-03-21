@@ -8,14 +8,14 @@ export default function TaskCard({ task, onDelete, onEdit }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex items-center justify-between rounded-xl p-4 shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-gray-800">
+    <div className="flex items-center justify-between gap-5 rounded-xl p-4 shadow-md transition-all hover:-translate-y-1 hover:shadow-lg dark:bg-gray-800">
       <div className="text-left">
         <h2
           className={`text-lg font-bold ${task.isDone ? "text-gray-400 line-through" : "text-black dark:text-white"}`}
         >
           {task.title}
         </h2>
-        <p className="text-gray-400">{task.description}</p>
+        <p className="text-gray-600">{task.description}</p>
         <div className="mt-3 flex items-center gap-2">
           <Badge variant="info">{task.category}</Badge>
           <Badge
