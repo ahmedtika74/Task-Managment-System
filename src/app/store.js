@@ -6,7 +6,7 @@ const localStorageTasks = (store) => (next) => (action) => {
 
   if (action.type.startsWith("tasks/")) {
     const state = store.getState();
-    localStorage.setItem("tasks", JSON.stringify(state.tasks));
+    localStorage.setItem("tasks", JSON.stringify(state.tasks.tasks));
   }
 
   return result;
