@@ -9,8 +9,8 @@ export default function FilterTabs({ currentFilter = "all", onFilterChange }) {
         }}
         style={
           currentFilter === "all"
-            ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 hover:text-white"
-            : ""
+            ? "bg-gray-700 dark:bg-gray-700 text-blue-600 dark:text-blue-400 hover:text-white"
+            : "hover:bg-white hover:dark:bg-gray-700 hover:text-blue-600 hover:dark:text-blue-400"
         }
       >
         All
@@ -21,7 +21,7 @@ export default function FilterTabs({ currentFilter = "all", onFilterChange }) {
         }}
         style={
           currentFilter === "pending"
-            ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400"
+            ? "bg-gray-700 dark:bg-gray-700 text-blue-600 dark:text-blue-400 hover:text-white"
             : "hover:bg-white hover:dark:bg-gray-700 hover:text-blue-600 hover:dark:text-blue-400"
         }
       >
@@ -33,7 +33,7 @@ export default function FilterTabs({ currentFilter = "all", onFilterChange }) {
         }}
         style={
           currentFilter === "done"
-            ? "bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400"
+            ? "bg-gray-700 dark:bg-gray-700 text-blue-600 dark:text-blue-400 hover:text-white"
             : "hover:bg-white hover:dark:bg-gray-700 hover:text-blue-600 hover:dark:text-blue-400"
         }
       >
