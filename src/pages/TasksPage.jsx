@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTask } from "../app/features/tasks/tasksSlice";
+import {
+  deleteTask,
+  setSearchQuery,
+  setSortBy,
+  setFilter,
+} from "../app/features/tasks/tasksSlice";
 import Button from "../components/ui/Button";
 import TaskCard from "../components/ui/TaskCard";
 import Modal from "../components/ui/Modal";
 import AddTaskForm from "../components/ui/AddTaskForm";
 import ConfirmDialog from "../components/common/ConfirmDialog";
+import SearchBar from "../components/ui/SearchBar";
+import SortDropdown from "../components/ui/SortDropdown";
+import FilterTabs from "../components/ui/FilterTabs";
 
 export default function TasksPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,9 +21,34 @@ export default function TasksPage() {
   const [taskToEdit, setTaskToEdit] = useState(null);
 
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks) || [];
+  const { tasks, filter, searchQuery, sortBy } = useSelector(
+    (state) => state.tasks,
+  );
+
+  const filteredTasks = tasks
+    .filter((task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    )
+    .filter((task) => {
+      if (filter === "done") return task.isDone === true;
+      if (filter === "pending") return task.isDone === false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortBy === "title") {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === "priority") {
+        const prior = { high: 1, medium: 2, low: 3 };
+        return prior[a.priority] - prior[b.priority];
+      } else if (sortBy === "date") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+
+      return;
+    });
   return (
     <div className="w-full">
+      {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <h2 className="text-2xl font-bold">My Tasks</h2>
         <Button
@@ -26,13 +59,39 @@ export default function TasksPage() {
           Add New Task
         </Button>
       </div>
+      {/* Search & Filter & Sort */}
+      <div className="mb-6">
+        <SearchBar
+          value={searchQuery}
+          onChange={(e) => {
+            dispatch(setSearchQuery(e.target.value));
+          }}
+        />
+        <div className="mt-6 flex items-center justify-between">
+          <FilterTabs
+            currentFilter={filter}
+            onFilterChange={(value) => {
+              dispatch(setFilter(value));
+            }}
+          />
+          <SortDropdown
+            currentSort={sortBy}
+            onSortChange={(value) => dispatch(setSortBy(value))}
+          />
+        </div>
+      </div>
+      {/* Tasks */}
       <div className="grid grid-cols-1 gap-4">
         {tasks.length === 0 ? (
           <p className="py-8 text-center text-gray-500">
             No tasks yet. Start by adding one!
           </p>
+        ) : filteredTasks.length === 0 ? (
+          <div className="text-center text-gray-400">
+            No tasks found matching your criteria!
+          </div>
         ) : (
-          tasks.map((task) => (
+          filteredTasks.map((task) => (
             <TaskCard
               key={task.id}
               task={task}
@@ -45,12 +104,14 @@ export default function TasksPage() {
           ))
         )}
       </div>
+
+      {/* Modals */}
       <Modal
         isOpen={isModalOpen}
-        title={taskToEdit ? "Edite Task" : "Add New Task"}
+        title={taskToEdit ? "Edit Task" : "Add New Task"}
         onClose={() => {
           setIsModalOpen(false);
-          setTaskToEdit(false);
+          setTaskToEdit(null);
         }}
       >
         <AddTaskForm
