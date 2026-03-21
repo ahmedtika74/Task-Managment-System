@@ -4,6 +4,7 @@ export default function FilterTabs({ currentFilter = "all", onFilterChange }) {
   return (
     <div className="flex items-center gap-1 rounded-xl bg-gray-100 p-1 dark:bg-gray-800">
       <Button
+        size="sm"
         onClick={() => {
           onFilterChange("all");
         }}
@@ -16,6 +17,7 @@ export default function FilterTabs({ currentFilter = "all", onFilterChange }) {
         All
       </Button>
       <Button
+        size="sm"
         onClick={() => {
           onFilterChange("pending");
         }}
@@ -28,6 +30,7 @@ export default function FilterTabs({ currentFilter = "all", onFilterChange }) {
         Pending
       </Button>
       <Button
+        size="sm"
         onClick={() => {
           onFilterChange("done");
         }}
