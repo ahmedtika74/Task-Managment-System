@@ -25,7 +25,7 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`flex cursor-pointer items-center justify-center rounded-lg font-medium transition-colors focus:outline-0 ${style} ${variants[variant]} ${sizes[size]}`}
+      className={`flex cursor-pointer items-center justify-center rounded-lg font-medium transition-all focus:outline-0 ${variants[variant]} ${sizes[size]} ${style}`}
     >
       {children}
     </button>
