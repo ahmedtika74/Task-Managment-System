@@ -1,74 +1,67 @@
-# Task Management System
+# 🚀 Task Flow - Modern Task Management System
 
-A feature‑rich task manager app built with **React.js** and **Material UI** that supports full CRUD functionality and local storage persistence.
+A modern, fully-featured task management application built with React, Redux Toolkit, and Tailwind CSS. **Task Flow** helps users organize their daily routines efficiently with a clean UI, built-in dark mode, and persistent local storage.
 
 ## 🌐 Live Demo
-🔗 [*Preview Link*](https://stirring-biscotti-9c8e32.netlify.app/)
 
-## 📌 Project Overview
-This project is a responsive task management app that allows users to:
+🔗 [_Preview Link_](https://task-managment-system-iota.vercel.app/)
 
-- Create new tasks
-- Edit existing tasks
-- Delete tasks
-- Persist tasks using Local Storage
-- Filter tasks by status (All, Done, Pending)
+## ✨ Features
 
-It demonstrates fundamental React skills including component design, state management, and UI interaction using Material UI.
+- **Dashboard Overview:** Get a quick birds-eye view of total, completed, and pending tasks along with recent task activities.
+- **Advanced State Management:** Utilizes **Redux Toolkit** for predictable state management across the application.
+- **Local Storage Sync:** Custom Redux middleware automatically synchronizes your tasks with local storage, ensuring no data is ever lost upon refresh.
+- **Dynamic Filtering & Sorting:** Quickly filter tasks by status (All, Pending, Done) and sort them by Date, Title, or Priority.
+- **Task Categorization & Prioritization:** Assign specific categories (Work, Study, Personal) and priority levels (High, Medium, Low) to tasks.
+- **Beautiful UI & Dark Mode:** Built entirely from scratch using **Tailwind CSS v4**, featuring a seamless Light/Dark mode toggle.
+- **Custom UI Components:** Reusable and scalable UI components including Modals, Badges, Buttons, and interactive Confirm Dialogs.
+- **Toast Notifications:** Real-time feedback using `react-hot-toast` for user actions (Create, Update, Delete).
 
-## 🛠 Technologies Used
-- **React.js** – Component‑based frontend  
-- **Material UI (MUI)** – UI components and layout  
-- **React Hooks (useState, useEffect)** – State and lifecycle  
-- **Local Storage** – Client‑side persistence  
-- **JavaScript (ES6+)** – Logic and interaction  
-- **Responsive Design** – Works across devices
+## 🛠️ Technologies Used
 
-## 📁 Project Structurez
-```
-Task‑Managment‑System/
-├── public/
-├── src/
-│ ├── components/
-│ │ ├── Task.jsx
-│ │ ├── ToDoList.jsx
-│ │ └── ...
-│ ├── App.jsx
-│ ├── main.jsx
-│ └── ...
-├── .gitignore
-├── package.json
-└── README.md
-```
+- **React 19** (Vite)
+- **Redux Toolkit** & **React-Redux**
+- **React Router DOM** (Nested Layouts)
+- **Tailwind CSS v4**
+- **Lucide React** (Icons)
+- **React Hot Toast** (Notifications)
+- **UUID** (Unique Identifiers)
 
-## 📌 How to Run Locally
-1. Clone the repo  
+## 📦 Installation & Setup
+
+1. **Clone the repository:**
+
    ```bash
-   git clone https://github.com/ahmedtika74/Task‑Managment‑System.git
+   git clone https://github.com/ahmedtika74/Task-Managment-System.git
+   cd Task-Managment-System
    ```
-2. Install dependencies
-   ```
+
+2. **Install dependencies:**
+
+   ```bash
    npm install
    ```
-3. Start the dev server
+
+3. **Start the development server:**
+
+   ```bash
+   npm run dev
    ```
-   npm start
-   ```
 
-## 🙌 Key Features
-- Full CRUD: Create, Read, Update, Delete tasks
-- Local Storage persistence
-- Dynamic filtering by task status
-- Responsive layout using Material UI
-- Clean component structure
+4. **Open in browser:**
+   Navigate to `http://localhost:5173`
 
-## 🚀 What I Learned
-- Designing component‑based UIs in React
-- Managing state with useState and useEffect
-- Integrating Material UI for modern design
-- Using Local Storage for persistence
-- Handling task filtering and UI interaction
+## 🗂️ Project Structure
 
-## 📞 Connect with Me
-GitHub: https://github.com/ahmedtika74
-LinkedIn: https://linkedin.com/in/ahmedtika74
+```text
+src/
+├── app/                  # Redux Store & Middleware
+│   └── features/         # Redux Slices (tasksSlice.js)
+├── components/           # React Components
+│   ├── common/           # Shared components (ConfirmDialog)
+│   ├── layout/           # App layouts (MainLayout, Sidebar, Header)
+│   └── ui/               # Reusable UI elements (Buttons, Modals, Cards)
+├── hooks/                # Custom React Hooks (useTheme, useTaskModals)
+├── pages/                # Route Pages (Dashboard, TasksPage, NotFound)
+└── utils/                # Helper functions
+```
