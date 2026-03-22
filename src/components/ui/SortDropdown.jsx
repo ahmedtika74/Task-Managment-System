@@ -1,7 +1,7 @@
 export default function SortDropdown({ currentSort, onSortChange }) {
   return (
-    <div>
-      <label className="hidden md:block">Sort By: </label>
+    <div className="flex items-center">
+      <label className="mr-2 hidden md:block">Sort By:</label>
       <select
         value={currentSort}
         onChange={(e) => {
