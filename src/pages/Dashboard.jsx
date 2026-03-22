@@ -3,6 +3,7 @@ import { CheckCircle, ListTodo, Hourglass } from "lucide-react";
 import { useOutletContext } from "react-router-dom";
 import TaskCard from "../components/ui/TaskCard";
 import Button from "../components/ui/Button";
+import EmptyState from "../components/ui/EmptyState";
 
 export default function Dashboard() {
   const { handleAdd, handleEdit, handleDelete } = useOutletContext();
@@ -52,9 +53,10 @@ export default function Dashboard() {
           </Button>
         </div>
         {recentTasks.length === 0 ? (
-          <p className="py-8 text-center text-gray-500">
-            No tasks yet. Start by adding one!
-          </p>
+          <EmptyState
+            title="No Tasks Found"
+            description="Enjoy your free time or add a new task to get started!"
+          />
         ) : (
           recentTasks.map((task) => (
             <TaskCard

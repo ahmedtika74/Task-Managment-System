@@ -11,6 +11,7 @@ import TaskCard from "../components/ui/TaskCard";
 import SearchBar from "../components/ui/SearchBar";
 import SortDropdown from "../components/ui/SortDropdown";
 import FilterTabs from "../components/ui/FilterTabs";
+import EmptyState from "../components/ui/EmptyState";
 
 export default function TasksPage() {
   const { handleAdd, handleEdit, handleDelete } = useOutletContext();
@@ -71,13 +72,12 @@ export default function TasksPage() {
       {/* Tasks */}
       <div className="grid grid-cols-1 gap-4">
         {tasks.length === 0 ? (
-          <p className="py-8 text-center text-gray-500">
-            No tasks yet. Start by adding one!
-          </p>
+          <EmptyState
+            title="No Tasks Found"
+            description="Enjoy your free time or add a new task to get started!"
+          />
         ) : filteredTasks.length === 0 ? (
-          <div className="text-center text-gray-400">
-            No tasks found matching your criteria!
-          </div>
+          <EmptyState title="No matching tasks." />
         ) : (
           filteredTasks.map((task) => (
             <TaskCard
