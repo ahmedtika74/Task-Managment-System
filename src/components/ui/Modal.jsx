@@ -6,8 +6,14 @@ export default function Modal({ isOpen, onClose, title, children }) {
   }
   return (
     <div>
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-        <div className="flex w-full max-w-md flex-col rounded-xl bg-white p-6 shadow-xl dark:bg-gray-800">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+        onClick={onClose}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="flex w-full max-w-md flex-col rounded-xl bg-white p-6 shadow-xl dark:bg-gray-800"
+        >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               {title}
