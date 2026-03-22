@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask, updateTask } from "../../app/features/tasks/tasksSlice";
+import toast from "react-hot-toast";
 import Button from "./Button";
 
 export default function AddTaskForm({ onClose, taskToEdit }) {
@@ -16,14 +17,16 @@ export default function AddTaskForm({ onClose, taskToEdit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (data.title.trim() === "") {
-      alert("not valid");
+      toast.error("Please enter a task title");
       return;
     }
 
     if (taskToEdit) {
       dispatch(updateTask(data));
+      toast.success("Task updated successfully!");
     } else {
       dispatch(addTask(data));
+      toast.success("Task added successfully!");
     }
 
     onClose();

@@ -6,6 +6,7 @@ import {
   setSortBy,
   setFilter,
 } from "../app/features/tasks/tasksSlice";
+import toast from "react-hot-toast";
 import Button from "../components/ui/Button";
 import TaskCard from "../components/ui/TaskCard";
 import Modal from "../components/ui/Modal";
@@ -130,6 +131,7 @@ export default function TasksPage() {
         }}
         onConfirm={() => {
           dispatch(deleteTask(taskToDelete));
+          toast.success("Task deleted successfully!");
           setTaskToDelete(null);
         }}
         isOpen={!!taskToDelete}

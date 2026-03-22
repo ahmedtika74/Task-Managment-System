@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { toggleTask } from "../../app/features/tasks/tasksSlice";
 import { Check, PencilLine, Trash } from "lucide-react";
+import toast from "react-hot-toast";
 import Badge from "./Badge";
 import Button from "./Button";
 
@@ -37,6 +38,9 @@ export default function TaskCard({ task, onDelete, onEdit }) {
           variant="check"
           onClick={() => {
             dispatch(toggleTask(task));
+            toast.success(
+              task.isDone ? "Task marked as pending!" : "Task completed!",
+            );
           }}
         >
           <Check />
