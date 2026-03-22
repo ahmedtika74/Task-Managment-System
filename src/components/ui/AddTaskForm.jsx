@@ -12,6 +12,7 @@ export default function AddTaskForm({ onClose, taskToEdit }) {
     description: taskToEdit?.description || "",
     priority: taskToEdit?.priority || "medium",
     category: taskToEdit?.category || "work",
+    dueDate: taskToEdit?.dueDate || "",
   });
 
   const handleSubmit = (e) => {
@@ -52,33 +53,47 @@ export default function AddTaskForm({ onClose, taskToEdit }) {
         name="description"
         className="rounded-lg border p-2 dark:border-gray-600 dark:bg-gray-700"
       />
-      <div className="flex items-center gap-4">
-        <label>Priority:</label>
+
+      <div className="flex items-center justify-between">
+        {/* Priority */}
         <select
           value={data.priority}
           onChange={(e) => {
             setData({ ...data, priority: e.target.value });
           }}
           name="priority"
-          className="rounded-lg border p-2 dark:border-gray-600 dark:bg-gray-700"
+          className="rounded-lg border p-0.5 py-2 text-sm md:p-2 md:text-base dark:border-gray-600 dark:bg-gray-700"
         >
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
+          <optgroup label="Priority">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </optgroup>
         </select>
-        <label>Category</label>
+        {/* Category */}
         <select
           value={data.category}
           onChange={(e) => {
             setData({ ...data, category: e.target.value });
           }}
           name="category"
-          className="rounded-lg border p-2 dark:border-gray-600 dark:bg-gray-700"
+          className="rounded-lg border p-0.5 py-2 text-sm md:p-2 md:text-base dark:border-gray-600 dark:bg-gray-700"
         >
-          <option value="work">Work</option>
-          <option value="study">Study</option>
-          <option value="personal">Personal</option>
+          <optgroup label="category">
+            <option value="work">Work</option>
+            <option value="study">Study</option>
+            <option value="personal">Personal</option>
+          </optgroup>
         </select>
+        {/* Due Date */}
+        <input
+          value={data.dueDate}
+          onChange={(e) => {
+            setData({ ...data, dueDate: e.target.value });
+          }}
+          type="date"
+          className="rounded-lg border p-0.5 py-2 text-sm outline-0 md:p-2 md:text-base dark:border-gray-600 dark:bg-gray-700"
+        />
       </div>
       <Button type="submit">{taskToEdit ? "Update Task" : "Save Task"}</Button>
     </form>

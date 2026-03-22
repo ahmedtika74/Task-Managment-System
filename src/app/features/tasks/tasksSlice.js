@@ -33,6 +33,7 @@ export const tasksSlice = createSlice({
         isDone: false,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
+        dueDate: action.payload.dueDate,
       };
       state.tasks.unshift(newTask);
     },
@@ -55,6 +56,7 @@ export const tasksSlice = createSlice({
         task.priority = action.payload.priority;
         task.category = action.payload.category;
         task.updatedAt = new Date().toISOString();
+        task.dueDate = action.payload.dueDate;
       }
     },
     setFilter: (state, action) => {

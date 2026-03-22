@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { toggleTask } from "../../app/features/tasks/tasksSlice";
-import { Check, PencilLine, Trash } from "lucide-react";
+import { Check, PencilLine, Trash, Calendar } from "lucide-react";
 import toast from "react-hot-toast";
 import Badge from "./Badge";
 import Button from "./Button";
@@ -18,6 +18,11 @@ export default function TaskCard({ task, onDelete, onEdit }) {
         </h2>
         <p className="text-gray-600 dark:text-gray-500">{task.description}</p>
         <div className="mt-3 flex items-center gap-2">
+          {task.dueDate && (
+            <>
+              <Calendar size={15} /> <Badge>{task.dueDate}</Badge>
+            </>
+          )}
           <Badge variant="info">{task.category}</Badge>
           <Badge
             variant={
