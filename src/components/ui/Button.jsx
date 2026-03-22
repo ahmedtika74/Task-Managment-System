@@ -1,8 +1,7 @@
 export default function Button({
-  disabled,
   onClick,
   children,
-  style = "",
+  className = "",
   variant = "primary",
   size = "md",
   type = "button",
@@ -24,8 +23,7 @@ export default function Button({
     <button
       type={type}
       onClick={onClick}
-      disabled={disabled}
-      className={`flex cursor-pointer items-center justify-center rounded-lg font-medium transition-all focus:outline-0 ${variants[variant]} ${sizes[size]} ${style}`}
+      className={`flex cursor-pointer items-center justify-center rounded-lg font-medium transition-all focus:outline-0 ${variants[variant]} ${sizes[size]} ${className}`}
     >
       {children}
     </button>
