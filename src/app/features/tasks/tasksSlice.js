@@ -68,9 +68,6 @@ export const tasksSlice = createSlice({
     setSortBy: (state, action) => {
       state.sortBy = action.payload;
     },
-    reorderTasks: () => {
-      console.log("Task Reordered!");
-    },
   },
 });
 
@@ -82,7 +79,6 @@ export const {
   setFilter,
   setSearchQuery,
   setSortBy,
-  reorderTasks,
 } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
