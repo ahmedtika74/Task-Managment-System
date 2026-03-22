@@ -1,21 +1,12 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { deleteTask } from "../app/features/tasks/tasksSlice";
 import { CheckCircle, ListTodo, Hourglass } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
 import TaskCard from "../components/ui/TaskCard";
 import Button from "../components/ui/Button";
-import AddTaskForm from "../components/ui/AddTaskForm";
-import Modal from "../components/ui/Modal";
-import ConfirmDialog from "../components/common/ConfirmDialog";
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
+  const { handleAdd, handleEdit, handleDelete } = useOutletContext();
   const { tasks } = useSelector((state) => state.tasks);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [taskToDelete, setTaskToDelete] = useState(null);
-  const [taskToEdit, setTaskToEdit] = useState(null);
 
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter((task) => task.isDone === true).length;
@@ -56,9 +47,9 @@ export default function Dashboard() {
       <div className="mt-8 flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold">Recent Tasks</h2>
-          <Link to="/tasks">
-            <Button size="sm">Add Task</Button>
-          </Link>
+          <Button size="sm" onClick={handleAdd}>
+            Add Task
+          </Button>
         </div>
         {recentTasks.length === 0 ? (
           <p className="py-8 text-center text-gray-500">
@@ -69,47 +60,12 @@ export default function Dashboard() {
             <TaskCard
               key={task.id}
               task={task}
-              onDelete={() => {
-                setTaskToDelete(task);
-              }}
-              onEdit={() => {
-                setTaskToEdit(task);
-                setIsModalOpen(true);
-              }}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
             />
           ))
         )}
       </div>
-
-      {/* Modals */}
-      <Modal
-        isOpen={isModalOpen}
-        title={taskToEdit ? "Edit Task" : "Add New Task"}
-        onClose={() => {
-          setIsModalOpen(false);
-          setTaskToEdit(null);
-        }}
-      >
-        <AddTaskForm
-          taskToEdit={taskToEdit}
-          onClose={() => {
-            setIsModalOpen(false);
-            setTaskToEdit(null);
-          }}
-        />
-      </Modal>
-      <ConfirmDialog
-        title="Delete Task"
-        message={`Are you sure you want to delete "${taskToDelete?.title}"?`}
-        onClose={() => {
-          setTaskToDelete(null);
-        }}
-        onConfirm={() => {
-          dispatch(deleteTask(taskToDelete));
-          setTaskToDelete(null);
-        }}
-        isOpen={!!taskToDelete}
-      />
     </div>
   );
 }

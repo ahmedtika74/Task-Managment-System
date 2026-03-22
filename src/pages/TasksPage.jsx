@@ -1,26 +1,19 @@
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 import {
-  deleteTask,
   setSearchQuery,
   setSortBy,
   setFilter,
 } from "../app/features/tasks/tasksSlice";
-import toast from "react-hot-toast";
 import Button from "../components/ui/Button";
 import TaskCard from "../components/ui/TaskCard";
-import Modal from "../components/ui/Modal";
-import AddTaskForm from "../components/ui/AddTaskForm";
-import ConfirmDialog from "../components/common/ConfirmDialog";
+
 import SearchBar from "../components/ui/SearchBar";
 import SortDropdown from "../components/ui/SortDropdown";
 import FilterTabs from "../components/ui/FilterTabs";
 
 export default function TasksPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [taskToDelete, setTaskToDelete] = useState(null);
-  const [taskToEdit, setTaskToEdit] = useState(null);
-
+  const { handleAdd, handleEdit, handleDelete } = useOutletContext();
   const dispatch = useDispatch();
   const { tasks, filter, searchQuery, sortBy } = useSelector(
     (state) => state.tasks,
@@ -45,20 +38,14 @@ export default function TasksPage() {
         return new Date(b.createdAt) - new Date(a.createdAt);
       }
 
-      return;
+      return 0;
     });
   return (
     <div className="w-full">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <h2 className="text-2xl font-bold">My Tasks</h2>
-        <Button
-          onClick={() => {
-            setIsModalOpen(true);
-          }}
-        >
-          Add New Task
-        </Button>
+        <Button onClick={handleAdd}>Add New Task</Button>
       </div>
       {/* Search & Filter & Sort */}
       <div className="mb-6">
@@ -96,46 +83,12 @@ export default function TasksPage() {
             <TaskCard
               key={task.id}
               task={task}
-              onDelete={(task) => setTaskToDelete(task)}
-              onEdit={(task) => {
-                setTaskToEdit(task);
-                setIsModalOpen(true);
-              }}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
             />
           ))
         )}
       </div>
-
-      {/* Modals */}
-      <Modal
-        isOpen={isModalOpen}
-        title={taskToEdit ? "Edit Task" : "Add New Task"}
-        onClose={() => {
-          setIsModalOpen(false);
-          setTaskToEdit(null);
-        }}
-      >
-        <AddTaskForm
-          taskToEdit={taskToEdit}
-          onClose={() => {
-            setIsModalOpen(false);
-            setTaskToEdit(null);
-          }}
-        />
-      </Modal>
-      <ConfirmDialog
-        title="Delete Task"
-        message={`Are you sure you want to delete "${taskToDelete?.title}"?`}
-        onClose={() => {
-          setTaskToDelete(null);
-        }}
-        onConfirm={() => {
-          dispatch(deleteTask(taskToDelete));
-          toast.success("Task deleted successfully!");
-          setTaskToDelete(null);
-        }}
-        isOpen={!!taskToDelete}
-      />
     </div>
   );
 }
