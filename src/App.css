@@ -1,6 +1,0 @@
-.Card {
-  transition: 0.3s !important;
-}
-.Card:hover {
-  padding: 15px 0;
-}
